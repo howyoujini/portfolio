@@ -1,38 +1,142 @@
-.App {
-  text-align: center;
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+nav.fixed-nav {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  margin-right: 50px;
+  transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  z-index: 99;
+}
+
+.nav-button {
+  width: 0.7em;
+  height: 0.7em;
+  margin: 15px;
+  border-radius: 20em;
+  border: 1px solid rgb(69, 61, 216);
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 99;
 }
 
-.App-link {
-  color: #61dafb;
+.nav-button:hover {
+  transition: all 300ms ease-in-out;
+  transform: scale(1.4);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.active .nav-button {
+  background-color: rgb(69, 61, 216);
+  transition: all 300ms ease-in-out;
+  transform: scale(1.4);
+}
+
+/* 반응형 웹 설정 */
+
+@media (max-width: 320px) {
+  /* iPhone SE */
+  .nav-button {
+    width: 10px;
+    height: 10px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .fixed-nav {
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 414px) {
+  /* iPhone XR */
+  .nav-button {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+@media (max-width: 390px) {
+  /* iPhone 12 Pro */
+  .nav-button {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+@media (max-width: 430px) {
+  /* iPhone 14 Pro Max */
+  .nav-button {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  /* Samsung Galaxy S8+ */
+  .nav-button {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@media (max-width: 412px) {
+  /* Samsung Galaxy S20 Ultra */
+  .nav-button {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* iPad Mini, iPad Air */
+  .nav-button {
+    width: 25px;
+    height: 25px;
+  }
+
+  .fixed-nav {
+    margin-right: 20px;
+  }
+}
+
+@media (max-width: 1024px) {
+  /* iPad Pro */
+  .nav-button {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  /* Galaxy Z Fold 5, Asus Zenbook Fold */
+  .nav-button {
+    width: 20px;
+    height: 20px;
+  }
+
+  .fixed-nav {
+    margin-right: 15px;
+  }
+}
+
+@media (max-width: 411px) {
+  /* Samsung Galaxy A51/71 */
+  .nav-button {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+@media (max-width: 300px) {
+  .fixed-nav {
+    display: none;
   }
 }
