@@ -7,14 +7,14 @@ gsap.registerPlugin(ScrollTrigger);
 const ContactSection = () => {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
-  const socket = new WebSocket("ws://your-websocket-server");
+  //   const socket = new WebSocket("ws://your-websocket-server");
   const formRef = useRef(null);
   const chatBoxRef = useRef(null);
 
   useEffect(() => {
-    socket.addEventListener("message", (event) => {
-      setMessages((prevMessages) => [...prevMessages, event.data]);
-    });
+    // socket.addEventListener("message", (event) => {
+    //   setMessages((prevMessages) => [...prevMessages, event.data]);
+    // });
 
     gsap.from(formRef.current, {
       y: 50,
@@ -41,14 +41,14 @@ const ContactSection = () => {
     });
 
     return () => {
-      socket.close();
+      //   socket.close();
     };
-  }, [socket]);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (message) {
-      socket.send(message);
+      //   socket.send(message);
       setMessage("");
     }
   };
