@@ -12,18 +12,6 @@ const projects = [
     link: "https://www.youtube.com/watch?v=12UBC22-zC8",
   },
   { title: "Own love", description: "각자에게도 사랑의 모양이 있다", link: "https://youtu.be/aMips9jhJLM" },
-  { title: "Own love", description: "각자에게도 사랑의 모양이 있다", link: "https://youtu.be/aMips9jhJLM" },
-  { title: "Own love", description: "각자에게도 사랑의 모양이 있다", link: "https://youtu.be/aMips9jhJLM" },
-  { title: "Own love", description: "각자에게도 사랑의 모양이 있다", link: "https://youtu.be/aMips9jhJLM" },
-  { title: "Own love", description: "각자에게도 사랑의 모양이 있다", link: "https://youtu.be/aMips9jhJLM" },
-  { title: "Own love", description: "각자에게도 사랑의 모양이 있다", link: "https://youtu.be/aMips9jhJLM" },
-  { title: "Own love", description: "각자에게도 사랑의 모양이 있다", link: "https://youtu.be/aMips9jhJLM" },
-  { title: "Own love", description: "각자에게도 사랑의 모양이 있다", link: "https://youtu.be/aMips9jhJLM" },
-  { title: "Own love", description: "각자에게도 사랑의 모양이 있다", link: "https://youtu.be/aMips9jhJLM" },
-  { title: "Own love", description: "각자에게도 사랑의 모양이 있다", link: "https://youtu.be/aMips9jhJLM" },
-  { title: "Own love", description: "각자에게도 사랑의 모양이 있다", link: "https://youtu.be/aMips9jhJLM" },
-  { title: "Own love", description: "각자에게도 사랑의 모양이 있다", link: "https://youtu.be/aMips9jhJLM" },
-  { title: "Own love", description: "각자에게도 사랑의 모양이 있다", link: "https://youtu.be/aMips9jhJLM" },
 ];
 
 const ProjectsSection = () => {

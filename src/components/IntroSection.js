@@ -40,6 +40,7 @@ const IntroSection = () => {
         }
 
         setNewDestPos(pg) {
+          if (!pg) return;
           let randX, randY;
           do {
             randX = p.random(p.width);
@@ -67,32 +68,27 @@ const IntroSection = () => {
         }
       }
 
-      function initializeParticles() {
-        return new Promise((resolve) => {
-          particleArr = [];
-          for (let i = 0; i < particleNum; i++) {
-            let tempParticle = new Particle(0, 0);
-            tempParticle.setNewDestPos(pgraphics);
-            tempParticle.currentPosX = tempParticle.destPosX;
-            tempParticle.currentPosY = tempParticle.destPosY;
-            particleArr.push(tempParticle);
-          }
-          resolve();
-        });
-      }
+      const initializeParticles = async () => {
+        particleArr = [];
+        for (let i = 0; i < particleNum; i++) {
+          let tempParticle = new Particle(0, 0);
+          tempParticle.setNewDestPos(pgraphics);
+          tempParticle.currentPosX = tempParticle.destPosX;
+          tempParticle.currentPosY = tempParticle.destPosY;
+          particleArr.push(tempParticle);
+        }
+      };
 
-      function updateText() {
-        return new Promise((resolve) => {
-          pgraphics.background(255);
-          pgraphics.fill(0);
-          pgraphics.text(chr, p.width * 0.5, p.height * 0.55);
+      const updateText = async () => {
+        if (!pgraphics) return;
+        pgraphics.background(255);
+        pgraphics.fill(0);
+        pgraphics.text(chr, p.width * 0.5, p.height * 0.55);
 
-          particleArr.forEach((particle) => {
-            particle.setNewDestPos(pgraphics);
-          });
-          resolve();
-        });
-      }
+        for (let particle of particleArr) {
+          particle.setNewDestPos(pgraphics);
+        }
+      };
 
       p.setup = () => {
         let canvas = p.createCanvas(p.windowWidth, p.windowHeight);
@@ -112,42 +108,48 @@ const IntroSection = () => {
         p.textAlign(p.CENTER, p.CENTER);
         p.textSize(16);
         p.text("MOVE AROUND", p.width * 0.5, p.height * 0.05);
-        p.text("TYPE A CHARACTER, RESET THROUGH ESC", p.width * 0.5, p.height * 0.07);
+        p.text("TYPE A CHARACTER / RESET THROUGH ESC", p.width * 0.5, p.height * 0.07);
 
-        particleArr.forEach((particle) => {
+        for (let particle of particleArr) {
           particle.update();
           particle.display();
-        });
-      };
-      p.keyPressed = async () => {
-        console.log(p.keyCode);
-        if (keyPressTimeoutRef.current) {
-          return; // 키 입력이 무시됨
         }
+      };
+
+      p.keyPressed = async () => {
+        if (keyPressTimeoutRef.current) return; // Prevent key input spamming
 
         keyPressTimeoutRef.current = true;
 
-        // 특별한 키들을 처리
-        if (p.keyCode === p.ESCAPE || p.keyCode === 13 || p.keyCode === 16 || p.keyCode === 17 || p.keyCode === 18) {
-          chr = "Hello";
-          particleNum = 3800;
-        } else if (p.keyCode === p.DELETE || p.keyCode === p.BACKSPACE) {
-          chr = "Del";
-          particleNum = 1800;
-        } else if (p.keyCode >= 37 && p.keyCode <= 40) {
-          // 화살표 키들
-          chr = "Arr";
-          particleNum = 1800;
-        } else if (p.keyCode === 20) {
-          // 한영키
-          chr = "안녕!";
-          particleNum = 3800;
-        } else if (p.keyCode === p.TAB || p.keyCode === p.SPACE || p.keyCode === 32) {
-          chr = "!";
-          particleNum = 1000;
-        } else {
-          chr = String.fromCharCode(p.keyCode);
-          particleNum = 1800;
+        // Handle special keys
+        switch (p.keyCode) {
+          case p.ESCAPE:
+          case 13:
+          case 16:
+          case 17:
+          case 18:
+            chr = "Hello";
+            particleNum = 3800;
+            break;
+          case p.DELETE:
+          case p.BACKSPACE:
+            chr = "Del";
+            particleNum = 1800;
+            break;
+          case 20: // Caps Lock (could be interpreted as 한영키)
+            chr = "안녕!";
+            particleNum = 3800;
+            break;
+          case p.TAB:
+          case p.SPACE:
+          case 32:
+            chr = "!";
+            particleNum = 1000;
+            break;
+          default:
+            chr = String.fromCharCode(p.keyCode);
+            particleNum = 1800;
+            break;
         }
 
         await initializeParticles();
@@ -157,6 +159,7 @@ const IntroSection = () => {
       };
 
       p.windowResized = () => {
+        if (!pgraphics) return;
         p.resizeCanvas(p.windowWidth, p.windowHeight);
         pgraphics.resizeCanvas(p.width, p.height);
         pgraphics.textSize(p.min(p.width, p.height) * 0.4);
