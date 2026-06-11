@@ -1,14 +1,8 @@
 import "./App.css";
-import SpeechJam from "./components/SpeechJam";
+import FilmApp from "./film-app/FilmApp";
 
 const App = () => {
-  return (
-    <div>
-      <section id="intro-section">
-        <SpeechJam />
-      </section>
-    </div>
-  );
+  return <FilmApp />;
 };
 
 export default App;

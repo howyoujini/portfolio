@@ -1,8 +1,14 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import App from "./App";
 
-test('renders learn react link', () => {
+beforeEach(() => {
+  window.location.hash = "";
+  window.localStorage.clear();
+});
+
+test("renders the home screen with search and featured film", () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  expect(screen.getAllByText(/filmhaus/i).length).toBeGreaterThan(0);
+  expect(screen.getByPlaceholderText(/search films/i)).toBeInTheDocument();
+  expect(screen.getByText(/watch now/i)).toBeInTheDocument();
 });
